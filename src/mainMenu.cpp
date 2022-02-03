@@ -66,8 +66,22 @@ void MainMenu::handleEvent(sf::RenderWindow &win, sf::Event &event)
 				std::cout << "Switch to option\n";
 				//game->changeState(std::make_shared<OptMenu>(OptMenu(game)));
 			}
-			//quit btn
+			//resume btn
 			else if (btns[2].contains(event.mouseButton))
+			{
+				
+				if (game->stateSize() != 1)
+				{
+					std::cout << "Switch to previos state\n";
+					game->popState();
+				}
+				else
+				{
+					std::cout << "Unable to switch state\n";
+				}
+			}
+			//quit btn
+			else if (btns[3].contains(event.mouseButton))
 			{
 				std::cout << "Quitting game\n";
 				win.close();
