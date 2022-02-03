@@ -72,6 +72,11 @@ void Game::popState()
 	}
 }
 
+size_t Game::stateSize()
+{
+	return states.size();
+}
+
 bool Game::isrunning()
 {
 	return win.isOpen();

@@ -21,6 +21,7 @@ public:
 	void changeState(std::shared_ptr<State> state);
 	void pushState(std::shared_ptr<State> state);
 	void popState();
+	size_t stateSize();
 
 	bool isrunning();
 
