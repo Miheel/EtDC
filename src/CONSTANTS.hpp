@@ -17,12 +17,13 @@ namespace cor {
 	const std::string MENU_BACKGROUND = ABS_RES_PATH + "escape-the-dark-castle.jpg";
 	const std::string MENU_FONT = ABS_RES_PATH + "font/arial.ttf";
 
-	constexpr std::array<std::string_view, 3> MENU_OPT_NAMES = {
+	constexpr std::array<std::string_view, 4> MENU_OPT_NAMES = {
 		"Start Game",
 		"Options",
+		"Resume",
 		"Quit"
 	};
-	
+
 	const std::string CHAR_PATH = ABS_RES_PATH + "character/";
 	constexpr std::array<std::string_view, 6> CHARACTERS = {
 		"abbot.png",
@@ -59,17 +60,27 @@ namespace cor {
 	};
 	const std::string CHAPTER_BACK = ABS_RES_PATH + "chapter/cardBack/chapter_back.png";
 
+	const std::string PLAYER_DICE_PATH = ABS_RES_PATH + "dice/player/";
+	const std::map<std::string_view, std::array<std::string_view, 6>> PLAYER_DICE_FACES = {
+		//constexpr std::array <std::pair<std::string_view, std::array<std::string_view, 6>>, 6> DIE_FACES = 
 
-	const std::map<std::string_view, std::array<std::string_view, 6>> DIE_FACES = {
-	//constexpr std::array <std::pair<std::string_view, std::array<std::string_view, 6>>, 6> DIE_FACES = 
+			{ "abbot.png", { "wisdom.png", "might.png", "Double_wisdom.png", "Double_might.png", "cunning.png", "wisdom.png" }},
+			{ "cook.png", { "might.png", "wisdom.png", "Double_cunning.png", "Double_might.png", "cunning.png", "might.png" }},
+			{ "miller.png", { "cunning.png", "wisdom.png", "Double_might.png", "Double_cunning.png", "might.png", "cunning.png" }},
+			{ "smith.png", { "might.png", "wisdom.png", "Double_wisdom.png", "Double_might.png", "cunning.png", "might.png" }},
+			{ "tailor.png", { "cunning.png", "wisdom.png", "Double_cunning.png", "Double_wisdom.png", "might.png", "cunning.png" }},
+			{ "tanner.png", { "wisdom.png", "might.png", "Double_wisdom.png", "Double_cunning.png", "cunning.png", "wisdom.png" }}
+	};
 
-		{ "abbot.png", { "wisdom1", "might2", "Double wisdom3", "Double might4", "cunning5", "wisdom6" }},
-		{ "cook.png", { "might1", "wisdom2", "Double cunning3", "Double might4", "cunning5", "might6" }},
-		{ "miller.png", { "cunning1", "wisdom2", "Double might3", "Double cunning4", "might5", "cunning6" }},
-		{ "smith.png", { "might1", "wisdom2", "Double wisdom3", "Double might4", "cunning5", "might6" }},
-		{ "tailor.png", { "cunning1", "wisdom2", "Double cunning3", "Double wisdom4", "might5", "cunning6" }},
-		{ "tanner.png", { "wisdom1", "might2", "Double wisdom3", "Double cunning4", "cunning5", "wisdom6" }}
-	 };
+	const std::string CHAPTER_DICE_PATH = ABS_RES_PATH + "dice/chapter/";
+	constexpr std::array<std::string_view, 6> CHAPTER_DICE_FACES = {
+			"wisdom.png",
+			"might.png",
+			"cunning.png",
+			"wisdom.png",
+			"might.png",
+			"cunning.png"
+	};
 
 } // !namespace cor
 
