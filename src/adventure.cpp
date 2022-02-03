@@ -3,6 +3,7 @@
 #include "card/chapter.hpp"
 #include "card/boss_card.hpp"
 #include "randGen.hpp"
+#include "mainMenu.hpp"
 #include "CONSTANTS.hpp"
 
 Adventure::Adventure(Game * game)
@@ -16,6 +17,7 @@ void Adventure::init()
 
 	size_t playerPool = 4;
 	size_t deckPool = 15;
+	size_t dicePool = 9;
 
 	for (size_t i = 0; i < playerPool; i++)
 	{
@@ -26,10 +28,34 @@ void Adventure::init()
 	chapter_deck.push(std::make_shared<BossCard>(cor::BOSS.data(), cor::BOSS_BACK.data()));
 	for (size_t i = 0; i < deckPool; i++)
 	{
-
 		chapter_deck.push(std::make_shared<Chapter>(cor::CHAPTERS[random(0, 14)].data(), cor::CHAPTER_BACK.data()));
 	}
 	chapter_deck.push(std::make_shared<Card>(cor::BEGINNING.data(), cor::BEGINNING_BACK.data()));
+
+	for (size_t i = 0; i < dicePool; i++)
+	{
+		chapterDice.push_back(std::make_shared<Die>(cor::CHAPTER_DICE_PATH, cor::CHAPTER_DICE_FACES));
+		chapterDice[i]->setOrigin(0.f, chapterDice[i]->getLocalBounds().height);
+
+		switch (i)
+		{
+			case 0:
+			case 1:
+			case 2:
+				chapterDice[i]->setFace(cor::CHAPTER_DICE_FACES[0].data());
+				break;
+			case 3:
+			case 4:
+			case 5:
+				chapterDice[i]->setFace(cor::CHAPTER_DICE_FACES[1].data());
+				break;
+			case 6:
+			case 7:
+			case 8:
+				chapterDice[i]->setFace(cor::CHAPTER_DICE_FACES[2].data());
+				break;
+		}
+	}
 }
 
 void Adventure::update(float dt, sf::RenderWindow & win)
@@ -47,6 +73,23 @@ void Adventure::update(float dt, sf::RenderWindow & win)
 	{
 		turnedChapter->setPosition(game->win.getSize().x / 2.f, game->win.getSize().y / 2.f);
 	}
+	auto cardLeft = chapter_deck.top()->cardBack.getGlobalBounds().left;
+	auto cardTop = chapter_deck.top()->cardBack.getGlobalBounds().top;
+	auto dieTop_0 = chapterDice[0]->getGlobalBounds().top;
+	auto dieTop_3 = chapterDice[3]->getGlobalBounds().top;
+	//row 1
+	chapterDice[0]->setPosition(cardLeft, cardTop);
+	chapterDice[1]->setPosition(cardLeft + chapterDice[0]->getGlobalBounds().width, cardTop);
+	chapterDice[2]->setPosition(cardLeft + (chapterDice[1]->getGlobalBounds().width * 2), cardTop);
+
+	//row 2
+	chapterDice[3]->setPosition(cardLeft, chapterDice[0]->getGlobalBounds().top);
+	chapterDice[4]->setPosition(cardLeft + chapterDice[0]->getGlobalBounds().width, dieTop_0);
+	chapterDice[5]->setPosition(cardLeft + (chapterDice[1]->getGlobalBounds().width * 2), dieTop_0);
+	//row 3
+	chapterDice[6]->setPosition(cardLeft, chapterDice[3]->getGlobalBounds().top);
+	chapterDice[7]->setPosition(cardLeft + chapterDice[0]->getGlobalBounds().width, dieTop_3);
+	chapterDice[8]->setPosition(cardLeft + (chapterDice[1]->getGlobalBounds().width * 2), dieTop_3);
 }
 
 void Adventure::draw(sf::RenderWindow & win)
@@ -62,6 +105,10 @@ void Adventure::draw(sf::RenderWindow & win)
 	if (turnedChapter)
 	{
 		win.draw(turnedChapter->cardFront);
+	}
+	for (auto e : chapterDice)
+	{
+		win.draw(*e);
 	}
 }
 
@@ -83,7 +130,16 @@ void Adventure::handleEvent(sf::RenderWindow & win, sf::Event & event)
 			{
 			}*/
 		}
+
 	}
+	if (event.type = sf::Event::KeyReleased)
+	{
+		if (event.key.code == sf::Keyboard::Escape)
+		{
+			game->pushState(std::make_shared<MainMenu>(MainMenu(game)));
+		}
+	}
+
 }
 
 void Adventure::pause()

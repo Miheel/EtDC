@@ -23,9 +23,9 @@ public:
 
 private:
 	std::vector<std::shared_ptr<Player>> player_vec;
-	//std::vector<std::shared_ptr<Card>> chapter_deck;
 	cor::Deck<std::shared_ptr<Card>> chapter_deck;
 	std::shared_ptr<Card> turnedChapter = nullptr;
+	std::vector<std::shared_ptr<Die>> chapterDice;
 };
 
 #endif // !ADVENTURE_HPP
