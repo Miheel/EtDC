@@ -56,6 +56,16 @@ void Player::setOrig(Orig orig)
 	}
 }
 
+Die* Player::getDie()
+{
+	return &playerDie;
+}
+
+dieFaceRef Player::roll()
+{
+	return playerDie.roll();
+}
+
 void Player::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	target.draw(player_portrait);

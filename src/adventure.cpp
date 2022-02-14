@@ -24,7 +24,7 @@ void Adventure::init()
 		player_vec.push_back(std::make_shared<Player>(cor::CHARACTERS[random(0, 5)].data()));
 		player_vec[i]->setOrig(static_cast<Orig>(i));
 	}
-
+	chapter_deck.push(std::make_shared<Card>(cor::BOTTOM_DECK, cor::BOTTOM_DECK));
 	chapter_deck.push(std::make_shared<BossCard>(cor::BOSS.data(), cor::BOSS_BACK.data()));
 	for (size_t i = 0; i < deckPool; i++)
 	{
@@ -90,6 +90,22 @@ void Adventure::update(float dt, sf::RenderWindow & win)
 	chapterDice[6]->setPosition(cardLeft, chapterDice[3]->getGlobalBounds().top);
 	chapterDice[7]->setPosition(cardLeft + chapterDice[0]->getGlobalBounds().width, dieTop_3);
 	chapterDice[8]->setPosition(cardLeft + (chapterDice[1]->getGlobalBounds().width * 2), dieTop_3);
+
+	cardLeft = chapter_deck.top()->cardFront.getGlobalBounds().left;
+	auto cardBot = chapter_deck.top()->cardFront.getGlobalBounds().top + chapter_deck.top()->cardFront.getGlobalBounds().height;
+
+	int i = 0;
+	for (auto e : chapter_deck.top()->getHp())
+	{
+		e->getFace().first.setPosition(cardLeft + (e->getFace().first.getGlobalBounds().width * i++), cardBot);
+	}
+	
+	i = 0;
+	for (auto e : characterRolledDie)
+	{
+		e->first.setPosition(cardLeft + (e->first.getGlobalBounds().width * i++), cardBot + e->first.getGlobalBounds().height);
+		e->first.setOrigin(0.f, 0.f);
+	}
 }
 
 void Adventure::draw(sf::RenderWindow & win)
@@ -105,10 +121,18 @@ void Adventure::draw(sf::RenderWindow & win)
 	if (turnedChapter)
 	{
 		win.draw(turnedChapter->cardFront);
+		for (auto e : turnedChapter->getHp())
+		{
+			win.draw(*e);
+		}
 	}
 	for (auto e : chapterDice)
 	{
 		win.draw(*e);
+	}
+	for (auto e : characterRolledDie)
+	{
+		win.draw(e->first);
 	}
 }
 
@@ -119,18 +143,34 @@ void Adventure::handleEvent(sf::RenderWindow & win, sf::Event & event)
 		if (event.mouseButton.button == sf::Mouse::Left)
 		{
 			//chapter deck
-			if (!chapter_deck.empty() && chapter_deck.top()->contains(event.mouseButton))
+			if (chapter_deck.size() > 1 && chapter_deck.top()->contains(event.mouseButton) && (!turnedChapter || turnedChapter->getHp().empty()))
 			{
 				std::cout << "turn chapter card\n";
 				turnedChapter = chapter_deck.top();
 				chapter_deck.pop();
+				characterRolledDie.clear();
 			}
 			//playerdie
-			/*if ()
+			if (player_vec.at(0)->getDie()->contains(event.mouseButton))
 			{
-			}*/
+				characterRolledDie.push_back(std::make_shared<rolledDieFace>(player_vec.at(0)->roll()));
+			}
+				
+			else if (player_vec.at(1)->getDie()->contains(event.mouseButton))
+			{
+				characterRolledDie.push_back(std::make_shared<rolledDieFace>(player_vec.at(1)->roll()));
+			}
+				
+			else if (player_vec.at(2)->getDie()->contains(event.mouseButton))
+			{
+				characterRolledDie.push_back(std::make_shared<rolledDieFace>(player_vec.at(2)->roll()));
+			}
+				
+			else if (player_vec.at(3)->getDie()->contains(event.mouseButton))
+			{
+				characterRolledDie.push_back(std::make_shared<rolledDieFace>(player_vec.at(3)->roll()));
+			}
 		}
-
 	}
 	if (event.type = sf::Event::KeyReleased)
 	{

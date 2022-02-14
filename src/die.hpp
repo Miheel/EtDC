@@ -5,6 +5,9 @@
 #include <utility>
 #include "randGen.hpp"
 
+
+typedef std::pair<sf::Sprite&, std::string_view> dieFaceRef;
+typedef std::pair<sf::Sprite, std::string_view> rolledDieFace;
 class Die: public sf::Drawable
 {
 public:
@@ -17,13 +20,13 @@ public:
 	sf::FloatRect getLocalBounds();
 	bool contains(float x, float y);
 	bool contains(sf::Event::MouseButtonEvent mouse);
-	sf::Sprite& roll();
+	dieFaceRef roll();
 	void setFace(std::string face);
-	sf::Sprite& getFace();
+	dieFaceRef getFace();
 
 private:
 	cor::RandGen randGen;
-	sf::Sprite& rolledDie;
+	dieFaceRef rolledDie;
 	const std::array<std::string_view, 6> faces;
 
 	std::array<std::pair<sf::Sprite, sf::Texture>, 6> spriteFaces;

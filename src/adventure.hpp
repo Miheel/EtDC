@@ -1,6 +1,7 @@
 #ifndef ADVENTURE_HPP
 #define ADVENTURE_HPP
 
+#include <vector>
 #include "state.hpp"
 #include "player.hpp"
 #include "deck.hpp"
@@ -26,6 +27,7 @@ private:
 	cor::Deck<std::shared_ptr<Card>> chapter_deck;
 	std::shared_ptr<Card> turnedChapter = nullptr;
 	std::vector<std::shared_ptr<Die>> chapterDice;
+	std::vector<std::shared_ptr<rolledDieFace>> characterRolledDie;
 };
 
 #endif // !ADVENTURE_HPP

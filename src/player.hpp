@@ -24,6 +24,9 @@ public:
 
 	void setPosition(float x, float y, Pos pos);
 	void setOrig(Orig orig);
+
+	Die* getDie();
+	dieFaceRef roll();
 private:
 	sf::Texture playerTex;
 	sf::Sprite player_portrait;
