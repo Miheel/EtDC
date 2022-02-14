@@ -1,32 +1,32 @@
 #include "boss_card.hpp"
+#include "../CONSTANTS.hpp"
+#include "../help.hpp"
 #include <iostream>
 #include <fstream>
+
 
 BossCard::BossCard(std::string card, std::string back)
 	:Card(card, back)
 {
-	std::ifstream cardFile(card);
-	std::string line;
-	while (std::getline(cardFile, line))
-	{
-		if (line.find("NAME") != std::string::npos)
-		{
-			dmg.setString(line);
-		}
-		if (line.find("DMG") != std::string::npos)
-		{
-			dmg.setString(line);
-		}
-		else if (line.find("HP") != std::string::npos)
-		{
-			//hp.push_back(DieFace(line));
-		}
-		else if (line.find("PLAYERHP") != std::string::npos)
-		{
-			for (size_t i = 0; i < 4; i++)
-			{
-				//hp.push_back(Die());
-			}
-		}
-	}
+	readCard(*this, card);
+}
+
+std::vector<std::shared_ptr<Die>> BossCard::getHp()
+{
+	return hp;
+}
+
+void BossCard::addHp(std::shared_ptr<Die> hp)
+{
+	this->hp.push_back(hp);
+}
+
+std::string BossCard::getDMG()
+{
+	return dmg.getString();
+}
+
+void BossCard::setDMG(std::string dmg)
+{
+	this->dmg.setString(dmg);
 }

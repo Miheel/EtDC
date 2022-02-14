@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 
+class Die;
+
 class Card
 {
 public:
@@ -11,6 +13,11 @@ public:
 	void setPosition(float x, float y);
 	bool contains(float x, float y);
 	bool contains(sf::Event::MouseButtonEvent mouse);
+
+	virtual std::vector<std::shared_ptr<Die>> getHp();
+	virtual void addHp(std::shared_ptr<Die> hp){}
+	virtual std::string getDMG();
+	virtual void setDMG(std::string dmg) {}
 
 	sf::Sprite cardFront;
 	sf::Sprite cardBack;
