@@ -69,7 +69,6 @@ void MainMenu::handleEvent(sf::RenderWindow &win, sf::Event &event)
 			//resume btn
 			else if (btns[2].contains(event.mouseButton))
 			{
-				
 				if (game->stateSize() != 1)
 				{
 					std::cout << "Switch to previos state\n";

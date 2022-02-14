@@ -58,6 +58,9 @@ namespace cor {
 		"card_14.png",
 		"card_15.png"
 	};
+
+	const std::string BOTTOM_DECK = ABS_RES_PATH + "chapter/deck_bottom.png";
+
 	const std::string CHAPTER_BACK = ABS_RES_PATH + "chapter/cardBack/chapter_back.png";
 
 	const std::string PLAYER_DICE_PATH = ABS_RES_PATH + "dice/player/";
