@@ -51,7 +51,7 @@ bool Die::contains(sf::Event::MouseButtonEvent mouse)
 
 dieFaceRef Die::roll()
 {
-	auto index = randGen(0, spriteFaces.size() - 1);
+	auto index = randGen(0, static_cast<int>(spriteFaces.size() - 1));
 	rolledDie.first = spriteFaces[index].first;
 	rolledDie.second = faces[index];
 	return rolledDie;
@@ -59,7 +59,7 @@ dieFaceRef Die::roll()
 
 void Die::setFace(std::string face)
 {
-	int index = std::distance(faces.begin(), std::find(faces.begin(), faces.end(), face));
+	auto index = std::distance(faces.begin(), std::find(faces.begin(), faces.end(), face));
 	rolledDie.first = spriteFaces.at(index).first;
 	rolledDie.second = faces[index];
 }

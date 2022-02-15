@@ -1,7 +1,7 @@
 #include "mainMenu.hpp"
 #include <iostream>
 #include "adventure.hpp"
-#include "optMenu.h"
+#include "optMenu.hpp"
 #include "CONSTANTS.hpp"
 
 MainMenu::MainMenu(Game *game)

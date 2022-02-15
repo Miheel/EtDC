@@ -126,7 +126,7 @@ void Adventure::update(float dt, sf::RenderWindow & win)
 	}
 
 	//place next turn button at bottom middle of screen 
-	nextTurnBtn.setPosition(game->win.getSize().x / 2.f, game->win.getSize().y);
+	nextTurnBtn.setPosition(static_cast<float>(game->win.getSize().x / 2.f), static_cast<float>(game->win.getSize().y));
 }
 
 void Adventure::draw(sf::RenderWindow & win)
