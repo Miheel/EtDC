@@ -11,9 +11,9 @@ BossCard::BossCard(std::string card, std::string back)
 	readCard(*this, card);
 }
 
-std::vector<std::shared_ptr<Die>> BossCard::getHp()
+std::vector<std::shared_ptr<Die>>* BossCard::getHp()
 {
-	return hp;
+	return &hp;
 }
 
 void BossCard::addHp(std::shared_ptr<Die> hp)

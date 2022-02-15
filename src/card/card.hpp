@@ -14,7 +14,7 @@ public:
 	bool contains(float x, float y);
 	bool contains(sf::Event::MouseButtonEvent mouse);
 
-	virtual std::vector<std::shared_ptr<Die>> getHp();
+	virtual std::vector<std::shared_ptr<Die>>* getHp();
 	virtual void addHp(std::shared_ptr<Die> hp){}
 	virtual std::string getDMG();
 	virtual void setDMG(std::string dmg) {}
@@ -24,6 +24,7 @@ public:
 private:
 	sf::Texture frontTex;
 	sf::Texture backTex;
+
 };
 
 #endif // !CARD_HPP

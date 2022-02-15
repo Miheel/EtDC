@@ -1,4 +1,4 @@
-#include "optMenu.h"
+#include "optMenu.hpp"
 
 OptMenu::OptMenu(Game * game) 
 	:State(game)

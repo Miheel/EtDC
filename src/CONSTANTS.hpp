@@ -85,6 +85,8 @@ namespace cor {
 			"cunning.png"
 	};
 
+	const std::string END_TURN_BTN = ABS_RES_PATH + "btn/end_turn.png";
+
 } // !namespace cor
 
 #endif // !RESPATH_HPP

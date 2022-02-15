@@ -6,6 +6,7 @@
 #include "player.hpp"
 #include "deck.hpp"
 #include "card/card.hpp"
+#include <SFML/Graphics.hpp>
 
 
 class Adventure: public State 
@@ -23,6 +24,8 @@ public:
 	void resume() override;
 
 private:
+	sf::Sprite nextTurnBtn;
+	sf::Texture nextTexture;
 	std::vector<std::shared_ptr<Player>> player_vec;
 	cor::Deck<std::shared_ptr<Card>> chapter_deck;
 	std::shared_ptr<Card> turnedChapter = nullptr;

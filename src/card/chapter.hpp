@@ -10,7 +10,7 @@ public:
 	Chapter(std::string card, std::string back);
 	~Chapter() = default;
 
-	std::vector<std::shared_ptr<Die>> getHp() override;
+	std::vector<std::shared_ptr<Die>>* getHp() override;
 	void addHp(std::shared_ptr<Die> hp) override;
 	std::string getDMG() override;
 	void setDMG(std::string dmg) override;

@@ -40,9 +40,9 @@ Chapter::Chapter(std::string card, std::string back)
 	//}
 }
 
-std::vector<std::shared_ptr<Die>> Chapter::getHp()
+std::vector<std::shared_ptr<Die>>* Chapter::getHp()
 {
-	return hp;
+	return &hp;
 }
 
 void Chapter::addHp(std::shared_ptr<Die> hp)
