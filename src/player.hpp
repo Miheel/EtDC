@@ -51,6 +51,12 @@ public:
 	void setOrig(Orig orig);
 
 	/**
+	* @brief subctracts from the player hp
+	* @param dmg the incomming damage numbers to substract 
+	*/
+	void takeDmg(int dmg);
+
+	/**
 	* @brief gets the die the player class is holding
 	* @return a pointer the a player die
 	*/

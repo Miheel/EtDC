@@ -1,5 +1,6 @@
 #include "player.hpp"
 #include <iostream>
+#include <string>
 #include "CONSTANTS.hpp"
 
 Player::Player(std::string character) 
@@ -54,6 +55,12 @@ void Player::setOrig(Orig orig)
 			player_portrait.setOrigin(player_portrait.getGlobalBounds().width, player_portrait.getGlobalBounds().height);
 			break;
 	}
+}
+
+void Player::takeDmg(int dmg)
+{
+	auto playerHpInt = std::stoi(static_cast<std::string>(hp.getString()));
+	hp.setString(std::to_string(playerHpInt - dmg));
 }
 
 Die* Player::getDie()
