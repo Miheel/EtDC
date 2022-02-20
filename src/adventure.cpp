@@ -16,22 +16,26 @@ void Adventure::init()
 	cor::RandGen random;
 
 	size_t playerPool = 4;
-	size_t deckPool = 15;
+	size_t deckPool = 10;
 	size_t dicePool = 9;
 
 	//players
+	auto sequence = random.nonRepeating(0, 5, playerPool);
 	for (size_t i = 0; i < playerPool; i++)
 	{
-		player_vec.push_back(std::make_shared<Player>(cor::CHARACTERS[random(0, 5)].data()));
+		player_vec.push_back(std::make_shared<Player>(cor::CHARACTERS[sequence[i]].data()));
 		player_vec[i]->setOrig(static_cast<Orig>(i));
 	}
 
 	//chapter deck bottom card, boss, 15 chapter cards and start card
 	chapter_deck.push(std::make_shared<Card>(cor::BOTTOM_DECK, cor::BOTTOM_DECK));
 	chapter_deck.push(std::make_shared<BossCard>(cor::BOSS.data(), cor::BOSS_BACK.data()));
+
+	//14 is every card to chose from
+	sequence = random.nonRepeating(0, 14, deckPool);
 	for (size_t i = 0; i < deckPool; i++)
 	{
-		chapter_deck.push(std::make_shared<Chapter>(cor::CHAPTERS[random(0, 14)].data(), cor::CHAPTER_BACK.data()));
+		chapter_deck.push(std::make_shared<Chapter>(cor::CHAPTERS[sequence[i]].data(), cor::CHAPTER_BACK.data()));
 	}
 	chapter_deck.push(std::make_shared<Card>(cor::BEGINNING.data(), cor::BEGINNING_BACK.data()));
 
@@ -202,6 +206,13 @@ void Adventure::handleEvent(sf::RenderWindow & win, sf::Event & event)
 			if (nextTurnBtn.getGlobalBounds().contains(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)))
 			{
 				characterRolledDie.clear();
+				for (auto &player : player_vec)
+				{
+					if (player->getDie()->getFace().second.find("Double") == std::string::npos)
+					{
+						player->takeDmg(std::stoi(turnedChapter->getDMG()));
+					}
+				}
 			}
 		}
 	}
