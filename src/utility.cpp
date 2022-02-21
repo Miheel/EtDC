@@ -5,7 +5,8 @@
 #include <sstream>
 #include <fstream>
 
-std::vector<std::string> splitString(std::string str) {
+std::vector<std::string> cor::splitString(std::string str)
+{
 	std::stringstream iss(str);
 	std::string word;
 	std::vector<std::string> temp;
@@ -17,7 +18,7 @@ std::vector<std::string> splitString(std::string str) {
 	return temp;
 }
 
-void readCard(Card& card, std::string cardName)
+void cor::readCard(Card & card, std::string cardName)
 {
 	cardName.replace(cardName.end() - 3, cardName.end(), "txt");
 
@@ -49,5 +50,4 @@ void readCard(Card& card, std::string cardName)
 			}
 		}
 	}
-
 }
