@@ -10,9 +10,12 @@ namespace cor {
 	const int WIN_X = 1310;
 	const int WIN_Y = 900;
 
+	// absolte path to resources dir
 	const std::string ABS_RES_PATH = "D:/Code/Repos/EtDC/res/";
 
 	const std::string SPLASH_BACKGROUND = ABS_RES_PATH + "astolfo.jpg";
+	const std::string SPLASH_BACKGROUND_SOUND = ABS_RES_PATH + "music/splash_screen.wav";
+	const std::string ADVENTURE_BACKGROUND_SOUND = ABS_RES_PATH + "music/Something's Wrong.wav";
 
 	const std::string MENU_BACKGROUND = ABS_RES_PATH + "escape-the-dark-castle.jpg";
 	const std::string MENU_FONT = ABS_RES_PATH + "font/arial.ttf";
