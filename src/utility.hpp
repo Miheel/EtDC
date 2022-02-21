@@ -21,6 +21,6 @@ namespace cor
 	* @param card the card to set the atributes on
 	* @param cardName the text file to read from
 	*/
-	void readCard(Card& card, std::string cardName);
+	void readCard(Card& card, std::string cardName, size_t nrOfPlayers);
 }
 #endif // !HELP_HPP

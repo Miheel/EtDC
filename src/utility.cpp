@@ -1,4 +1,4 @@
-#include "help.hpp"
+#include "utility.hpp"
 #include "CONSTANTS.hpp"
 #include "die.hpp"
 #include <iostream>
@@ -18,7 +18,7 @@ std::vector<std::string> cor::splitString(std::string str)
 	return temp;
 }
 
-void cor::readCard(Card & card, std::string cardName)
+void cor::readCard(Card & card, std::string cardName, size_t nrOfPlayers)
 {
 	cardName.replace(cardName.end() - 3, cardName.end(), "txt");
 
@@ -42,11 +42,13 @@ void cor::readCard(Card & card, std::string cardName)
 			}
 
 		}
-		else if (line.find("PLAYERHP") != std::string::npos)
+		else if (line.find("PLAYERHP") != std::string::npos && line.find("true") != std::string::npos)
 		{
-			for (size_t i = 0; i < 4; i++)
+			for (size_t i = 0; i < nrOfPlayers; i++)
 			{
-				//hp.push_back(Die());
+				auto temp_die = std::make_shared<Die>(cor::CHAPTER_DICE_PATH, cor::CHAPTER_DICE_FACES);
+				temp_die->roll();
+				card.addHp(temp_die);
 			}
 		}
 	}
