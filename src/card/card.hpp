@@ -46,28 +46,35 @@ public:
 	bool contains(sf::Event::MouseButtonEvent mouse);
 
 	/**
+	* @brief sets the atributes of the card by eading a file
+	* @param cardName tthe name of the card
+	* @param nrOfPlayers the number of players
+	*/
+	virtual void setAttributes(std::string cardName, size_t nrOfPlayers) = 0;
+
+	/**
 	* @brief gets a the hp of the card
 	* @return a pointer to a vector containing die objects
 	*/
-	virtual std::vector<std::shared_ptr<Die>>* getHp();
+	virtual std::vector<std::shared_ptr<Die>>* getHp() = 0;
 
 	/**
 	* @brief virtual function to be implemented by derived class, adds hp to the cards hp pool
 	* @param hp a smart pointer to a die object
 	*/
-	virtual void addHp(std::shared_ptr<Die> hp){}
+	virtual void addHp(std::shared_ptr<Die> hp) = 0;
 
 	/**
 	* @brief virtual function to be implemented by derived class, gets the dmg numbers
 	* @return a string representing the amount of damage the card can do
 	*/
-	virtual std::string getDMG();
+	virtual std::string getDMG() = 0;
 
 	/**
 	* @brief virtual function to be implemented by derived class, sets the number of dmg the card can do
 	* @param dmg the amount the damage the card should do
 	*/
-	virtual void setDMG(std::string dmg) {}
+	virtual void setDMG(std::string dmg) = 0;
 
 	sf::Sprite cardFront;
 	sf::Sprite cardBack;

@@ -32,13 +32,3 @@ bool Card::contains(sf::Event::MouseButtonEvent mouse)
 {
 	return this->contains(static_cast<float>(mouse.x), static_cast<float>(mouse.y));
 }
-
-std::vector<std::shared_ptr<Die>>* Card::getHp()
-{
-	return &std::vector<std::shared_ptr<Die>>();
-}
-
-std::string Card::getDMG()
-{
-	return std::string();
-}

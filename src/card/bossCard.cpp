@@ -1,14 +1,17 @@
-#include "boss_card.hpp"
+#include "bossCard.hpp"
 #include "../CONSTANTS.hpp"
-#include "../help.hpp"
+#include "../utility.hpp"
 #include <iostream>
 #include <fstream>
 
 
 BossCard::BossCard(std::string card, std::string back)
 	:Card(card, back)
+{}
+
+void BossCard::setAttributes(std::string cardName, size_t nrOfPlayers)
 {
-	readCard(*this, card);
+	cor::readCard(*this, cardName, nrOfPlayers);
 }
 
 std::vector<std::shared_ptr<Die>>* BossCard::getHp()

@@ -1,22 +1,22 @@
-#ifndef CHAPTER_HPP
-#define CHAPTER_HPP
+#ifndef BOSS_CARD_HPP
+#define BOSS_CARD_HPP
 #include <string>
 #include "card.hpp"
 #include "../die.hpp"
 
 /**
-* @brief derived class from Card reprecenting a chapter card
+* @brief derived class from Card reprecenting a boss card
 */
-class Chapter : public Card
+class BossCard : public Card
 {
 public:
 	/**
-	* @brief constructor creating a chaptercard object
+	* @brief constructor creating a bosscard object
 	* @param card path to a image
 	* @param back path to a imge
 	*/
-	Chapter(std::string card, std::string back);
-	~Chapter() = default;
+	BossCard(std::string card, std::string back);
+	~BossCard() = default;
 
 	void setAttributes(std::string cardName, size_t nrOfPlayers) override;
 	std::vector<std::shared_ptr<Die>>* getHp() override;
@@ -29,4 +29,4 @@ private:
 
 };
 
-#endif // !CHAPTER_HPP
+#endif // !BOSS_CARD_HPP

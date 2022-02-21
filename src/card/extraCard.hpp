@@ -1,23 +1,24 @@
-#ifndef BOSS_CARD_HPP
-#define BOSS_CARD_HPP
+#ifndef EXTRACARD_HPP
+#define EXTRACARD_HPP
 #include <string>
 #include "card.hpp"
 #include "../die.hpp"
 
 /**
-* @brief derived class from Card reprecenting a boss card
+* @brief derived class from Card reprecenting a extra help card
 */
-class BossCard : public Card
+class ExtraCard : public Card
 {
 public:
 	/**
-	* @brief constructor creating a bosscard object
+	* @brief constructor creating a extra card object
 	* @param card path to a image
 	* @param back path to a imge
 	*/
-	BossCard(std::string card, std::string back);
-	~BossCard() = default;
+	ExtraCard(std::string card, std::string back);
+	~ExtraCard() = default;
 
+	void setAttributes(std::string cardName, size_t nrOfPlayers) override;
 	std::vector<std::shared_ptr<Die>>* getHp() override;
 	void addHp(std::shared_ptr<Die> hp) override;
 	std::string getDMG() override;
@@ -28,4 +29,4 @@ private:
 
 };
 
-#endif // !BOSS_CARD_HPP
+#endif // !EXTRACARD_HPP
