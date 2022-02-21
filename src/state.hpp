@@ -11,6 +11,9 @@
 class State
 {
 public:
+
+	State() = default;
+
 	/**
 	* @brief Constructor 
 	* @param game pointer to Game class
@@ -57,8 +60,8 @@ public:
 	void changeState(std::shared_ptr<State> state) {
 		game->changeState(state);
 	}
-	virtual void pause() = 0;
-	virtual void resume() = 0;
+	//virtual void pause() = 0;
+	//virtual void resume() = 0;
 
 protected:
 	Game *game;

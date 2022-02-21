@@ -6,6 +6,11 @@
 
 namespace cor {
 
+	/**
+	* @brief shuffles a sequence
+	* @param first an iterator to the first position in the sequencce
+	* @param last an iterator to the last position in the sequencce
+	*/
 	template<typename IT>
 	inline void shuffleDeck(IT first, IT last)
 	{

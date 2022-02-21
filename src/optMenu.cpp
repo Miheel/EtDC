@@ -20,11 +20,3 @@ void OptMenu::draw(sf::RenderWindow & win)
 void OptMenu::handleEvent(sf::RenderWindow & win, sf::Event & event)
 {
 }
-
-void OptMenu::pause()
-{
-}
-
-void OptMenu::resume()
-{
-}

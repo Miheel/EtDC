@@ -88,11 +88,3 @@ void MainMenu::handleEvent(sf::RenderWindow &win, sf::Event &event)
 		}
 	}
 }
-
-void MainMenu::pause()
-{
-}
-
-void MainMenu::resume()
-{
-}

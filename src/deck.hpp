@@ -4,20 +4,62 @@
 
 namespace cor {
 
+	/**
+	* @brief container class symbolizing a deck of cards
+	*/
 	template<typename T>
 	class Deck
 	{
 	public:
+		/**
+		* @brief constructs an empty deck
+		*/
 		Deck() = default;
+
+		/**
+		* @brief defualt constructor
+		*/
 		~Deck() = default;
+
+		/**
+		* @brief gets the top object in the deck
+		* @return reference to the top element in the deck
+		*/
 		T& top();
+
+		/**
+		* @brief gets the top object in the deck
+		* @return cosnt reference to the top element in the deck
+		*/
 		const T& top() const;
 
+		/**
+		* @brief checks if the deck is empty
+		* @return true if the deck is empty else false
+		*/
 		bool empty();
+
+		/**
+		* @brief gets the size of the deck
+		* @return the size if the deck
+		*/
 		size_t size();
+
+		/**
+		* @brief inserts an element by copying
+		* @param the element to insert
+		*/
 		void push(const T& elem);
+
+		/**
+		* @brief inserts an element by moving it 
+		* @param the element to insert
+		*/
 		void push(T&& elem);
 
+		/**
+		* @brief erases an element at the top
+		*/
 		void pop();
 	private:
 		std::deque<T> m_stack;

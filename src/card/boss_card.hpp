@@ -4,9 +4,17 @@
 #include "card.hpp"
 #include "../die.hpp"
 
+/**
+* @brief derived class from Card reprecenting a boss card
+*/
 class BossCard : public Card
 {
 public:
+	/**
+	* @brief constructor creating a bosscard object
+	* @param card path to a image
+	* @param back path to a imge
+	*/
 	BossCard(std::string card, std::string back);
 	~BossCard() = default;
 

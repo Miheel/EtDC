@@ -42,11 +42,15 @@ public:
 
 	/**
 	* @brief sets the position of the character portrait
+	* @param x coordinate of the new possition
+	* @param y coordinate of the new possition
+	* @param pos speifying where around the player to possition the player components
 	*/
 	void setPosition(float x, float y, Pos pos);
 
 	/**
 	* @brief sets the origin of the character portrait
+	* @param orig where the origin of the sprite will be positioned
 	*/
 	void setOrig(Orig orig);
 

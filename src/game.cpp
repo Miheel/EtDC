@@ -1,6 +1,6 @@
 #include "game.hpp"
 #include "state.hpp"
-#include "spash.hpp"
+#include "splash.hpp"
 #include <iostream>
 
 Game::Game(sf::VideoMode mode, const sf::String &title) 
@@ -55,10 +55,6 @@ void Game::changeState(std::shared_ptr<State> state)
 
 void Game::pushState(std::shared_ptr<State> state)
 {
-	if (!states.empty())
-	{
-		states.back()->pause();
-	}
 	states.push_back(state);
 	states.back()->init();
 }
@@ -68,7 +64,6 @@ void Game::popState()
 	if (!states.empty())
 	{
 		states.pop_back();
-		states.back()->resume();
 	}
 }
 

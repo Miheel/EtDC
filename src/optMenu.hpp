@@ -22,27 +22,10 @@ public:
 	*/
 	~OptMenu() = default;
 
-	/**
-	* @brief method inherited from State class
-	*/
 	void init() override;
-
-	/**
-	* @brief method inherited from State class
-	*/
-	void update(float dt, sf::RenderWindow &win) override;
-
-	/**
-	* @brief method inherited from State class
-	*/
-	void draw(sf::RenderWindow &win) override;
-
-	/**
-	* @brief method inherited from State class
-	*/
-	void handleEvent(sf::RenderWindow &win, sf::Event &event) override;
-	void pause() override;
-	void resume() override;
+	void update(float dt, sf::RenderWindow & win) override;
+	void draw(sf::RenderWindow & win) override;
+	void handleEvent(sf::RenderWindow & win, sf::Event & event) override;
 
 private:
 

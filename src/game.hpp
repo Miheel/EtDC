@@ -15,7 +15,7 @@ class Game
 {
 public:
 	/**
-	* brief parametrisized constructor
+	* @brief parametrisized constructor
 	* @param mode defines the video mode for the window
 	* @param title Title of the window
 	*/
