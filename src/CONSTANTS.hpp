@@ -13,7 +13,7 @@ namespace cor {
 	// absolte path to resources dir
 	const std::string ABS_RES_PATH = "D:/Code/Repos/EtDC/res/";
 
-	const std::string SPLASH_BACKGROUND = ABS_RES_PATH + "astolfo.jpg";
+	const std::string SPLASH_BACKGROUND = ABS_RES_PATH + "splash_Baskground.png";
 	const std::string SPLASH_BACKGROUND_SOUND = ABS_RES_PATH + "music/splash_screen.wav";
 	const std::string ADVENTURE_BACKGROUND_SOUND = ABS_RES_PATH + "music/Something's Wrong.wav";
 
@@ -44,7 +44,7 @@ namespace cor {
 	const std::string BEGINNING_BACK = ABS_RES_PATH + "chapter/start/cardBack/start_back.png";
 
 	const std::string CHAPT_PATH = ABS_RES_PATH + "chapter/";
-	constexpr std::array<std::string_view, 15> CHAPTERS = {
+	constexpr std::array<std::string_view, 21> CHAPTERS = {
 		"card_1.png",
 		"card_2.png",
 		"card_3.png",
@@ -59,7 +59,13 @@ namespace cor {
 		"card_12.png",
 		"card_13.png",
 		"card_14.png",
-		"card_15.png"
+		"card_15.png",
+		"card_16.png",
+		"card_17.png",
+		"card_18.png",
+		"card_19.png",
+		"card_20.png",
+		"card_21.png"
 	};
 
 	const std::string BOTTOM_DECK = ABS_RES_PATH + "chapter/deck_bottom.png";

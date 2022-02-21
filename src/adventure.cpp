@@ -1,9 +1,11 @@
 #include "adventure.hpp"
 #include <iostream>
 #include "card/chapter.hpp"
-#include "card/boss_card.hpp"
+#include "card/bossCard.hpp"
+#include "card/extraCard.hpp"
 #include "randGen.hpp"
 #include "mainMenu.hpp"
+#include "endGame.hpp"
 #include "CONSTANTS.hpp"
 
 Adventure::Adventure(Game * game)
@@ -16,7 +18,7 @@ void Adventure::init()
 	cor::RandGen random;
 
 	size_t playerPool = 4;
-	size_t deckPool = 10;
+	size_t deckPool = 5;
 	size_t dicePool = 9;
 
 	//players
@@ -28,16 +30,21 @@ void Adventure::init()
 	}
 
 	//chapter deck bottom card, boss, 15 chapter cards and start card
-	chapter_deck.push(std::make_shared<Card>(cor::BOTTOM_DECK, cor::BOTTOM_DECK));
-	chapter_deck.push(std::make_shared<BossCard>(cor::BOSS.data(), cor::BOSS_BACK.data()));
+	chapter_deck.push(std::make_shared<ExtraCard>(cor::BOTTOM_DECK, cor::BOTTOM_DECK));
+	auto tempCard = std::make_shared<BossCard>(cor::BOSS.data(), cor::BOSS_BACK.data());
+	tempCard->setAttributes(cor::BOSS.data(), playerPool);
+	chapter_deck.push(tempCard);
 
-	//14 is every card to chose from
-	sequence = random.nonRepeating(0, 14, deckPool);
+	//20 is every card to chose from
+	sequence = random.nonRepeating(0, 20, deckPool);
+
 	for (size_t i = 0; i < deckPool; i++)
 	{
-		chapter_deck.push(std::make_shared<Chapter>(cor::CHAPTERS[sequence[i]].data(), cor::CHAPTER_BACK.data()));
+		auto tempCard = std::make_shared<Chapter>(cor::CHAPTERS[sequence[i]].data(), cor::CHAPTER_BACK.data());
+		tempCard->setAttributes(cor::CHAPTERS[sequence[i]].data(), playerPool);
+		chapter_deck.push(tempCard);
 	}
-	chapter_deck.push(std::make_shared<Card>(cor::BEGINNING.data(), cor::BEGINNING_BACK.data()));
+	chapter_deck.push(std::make_shared<ExtraCard>(cor::BEGINNING.data(), cor::BEGINNING_BACK.data()));
 
 	//9 chapter dice with three different faces
 	for (size_t i = 0; i < dicePool; i++)
@@ -222,8 +229,23 @@ void Adventure::handleEvent(sf::RenderWindow & win, sf::Event & event)
 						{
 							player->takeDmg(std::stoi(turnedChapter->getDMG()));
 						}
+						if (player->getHp() <= 0)
+						{
+							auto tempState = std::make_shared<EndGame>(EndGame(game));
+							tempState->setMessage("You Died");
+							game->changeState(tempState);
+							break;
+						}
 					}
 				}
+			}
+
+			//win game
+			if (chapter_deck.size() == 1 && turnedChapter->getHp()->empty())
+			{
+				auto tempState = std::make_shared<EndGame>(EndGame(game));
+				tempState->setMessage("You Escaped");
+				game->changeState(tempState);
 			}
 		}
 	}

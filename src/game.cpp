@@ -1,6 +1,7 @@
 #include "game.hpp"
 #include "state.hpp"
 #include "splash.hpp"
+#include "endGame.hpp"
 #include <iostream>
 
 Game::Game(sf::VideoMode mode, const sf::String &title) 
