@@ -63,6 +63,11 @@ void Player::takeDmg(int dmg)
 	hp.setString(std::to_string(playerHpInt - dmg));
 }
 
+int Player::getHp()
+{
+	return std::stoi(static_cast<std::string>(hp.getString()));
+}
+
 Die* Player::getDie()
 {
 	return &playerDie;

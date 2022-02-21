@@ -61,6 +61,12 @@ public:
 	void takeDmg(int dmg);
 
 	/**
+	* @brief gets the hp of the player
+	* @return the hp of the player
+	*/
+	int getHp();
+
+	/**
 	* @brief gets the die the player class is holding
 	* @return a pointer the a player die
 	*/
