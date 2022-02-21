@@ -71,6 +71,14 @@ void Adventure::init()
 		nextTurnBtn.setOrigin(nextTurnBtn.getGlobalBounds().width / 2.f, nextTurnBtn.getGlobalBounds().top + nextTurnBtn.getGlobalBounds().height);
 		nextTurnBtn.setScale(0.5f, 0.5f);
 	}
+
+	if (!soundbuffer.loadFromFile(cor::ADVENTURE_BACKGROUND_SOUND))
+	{
+		std::cout << "Could not play sound\n";
+	}
+	backgroundMusic.setBuffer(soundbuffer);
+	backgroundMusic.play();
+	backgroundMusic.setLoop(true);
 }
 
 void Adventure::update(float dt, sf::RenderWindow & win)
@@ -206,11 +214,14 @@ void Adventure::handleEvent(sf::RenderWindow & win, sf::Event & event)
 			if (nextTurnBtn.getGlobalBounds().contains(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)))
 			{
 				characterRolledDie.clear();
-				for (auto &player : player_vec)
+				if (turnedChapter->getHp()->size() > 0)
 				{
-					if (player->getDie()->getFace().second.find("Double") == std::string::npos)
+					for (auto &player : player_vec)
 					{
-						player->takeDmg(std::stoi(turnedChapter->getDMG()));
+						if (player->getDie()->getFace().second.find("Double") == std::string::npos)
+						{
+							player->takeDmg(std::stoi(turnedChapter->getDMG()));
+						}
 					}
 				}
 			}
@@ -223,12 +234,4 @@ void Adventure::handleEvent(sf::RenderWindow & win, sf::Event & event)
 			game->pushState(std::make_shared<MainMenu>(MainMenu(game)));
 		}
 	}
-}
-
-void Adventure::pause()
-{
-}
-
-void Adventure::resume()
-{
 }

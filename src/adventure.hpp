@@ -7,21 +7,29 @@
 #include "deck.hpp"
 #include "card/card.hpp"
 #include <SFML/Graphics.hpp>
-
-
+#include <SFML/Audio.hpp>
+/**
+* @brief derived class of state handling adventure screen
+*
+*/
 class Adventure: public State 
 {
 public:
+	/**
+	* @brief constructor creating a adventure state
+	* @param game pointer to Game class
+	*/
 	Adventure(Game *game);
+
+	/**
+	* @brief default destructor
+	*/
 	~Adventure() = default;
 
 	void init() override;
 	void update(float dt, sf::RenderWindow & win) override;
 	void draw(sf::RenderWindow & win) override;
-
 	void handleEvent(sf::RenderWindow & win, sf::Event & event) override;
-	void pause() override;
-	void resume() override;
 
 private:
 	sf::Sprite nextTurnBtn;
@@ -31,6 +39,8 @@ private:
 	std::shared_ptr<Card> turnedChapter = nullptr;
 	std::vector<std::shared_ptr<Die>> chapterDice;
 	std::vector<std::shared_ptr<rolledDieFace>> characterRolledDie;
+	sf::SoundBuffer soundbuffer;
+	sf::Sound backgroundMusic;
 };
 
 #endif // !ADVENTURE_HPP

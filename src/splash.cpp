@@ -1,4 +1,4 @@
-#include "spash.hpp"
+#include "splash.hpp"
 #include "mainMenu.hpp"
 #include <iostream>
 #include "CONSTANTS.hpp"
@@ -15,11 +15,18 @@ void Splash::init()
 		//error
 	}
 	Background.setTexture(tex);
+	
+	if (!soundbuffer.loadFromFile(cor::SPLASH_BACKGROUND_SOUND))
+	{
+		std::cout << "Could not play sound\n";
+	}
+	backgroundMusic.setBuffer(soundbuffer);
+	backgroundMusic.play();
 }
 
 void Splash::update(float dt, sf::RenderWindow &win)
 {
-	if (splashTime.getElapsedTime().asSeconds() > 3.0)
+	if (splashTime.getElapsedTime().asSeconds() > soundbuffer.getDuration().asSeconds())
 	{
 		this->changeState(std::make_shared<MainMenu>(MainMenu(game)));
 		std::cout << "go to menu\n";
@@ -37,26 +44,21 @@ void Splash::handleEvent(sf::RenderWindow &win, sf::Event &event)
 {
 	if (event.mouseButton.button == sf::Mouse::Left)
 	{
+		backgroundMusic.stop();
 		this->changeState(std::make_shared<MainMenu>(MainMenu(game)));
 		std::cout << "go to menu\n";
 	}
 	switch (event.key.code)
 	{
 		case sf::Keyboard::Enter:
+			backgroundMusic.stop();
 			this->changeState(std::make_shared<MainMenu>(MainMenu(game)));
 			break;
 		case sf::Keyboard::Space:
+			backgroundMusic.stop();
 			this->changeState(std::make_shared<MainMenu>(MainMenu(game)));
 			break;
 		default:
 			break;
 	}
-}
-
-void Splash::pause()
-{
-}
-
-void Splash::resume()
-{
 }
