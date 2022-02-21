@@ -18,6 +18,11 @@ public:
 	ExtraCard(std::string card, std::string back);
 	~ExtraCard() = default;
 
+	/**
+	* @brief sets all the attribues of the card
+	* @param cardName path to an image
+	* @param nrOfPlayers the number of players in the game
+	*/
 	void setAttributes(std::string cardName, size_t nrOfPlayers) override;
 	std::vector<std::shared_ptr<Die>>* getHp() override;
 	void addHp(std::shared_ptr<Die> hp) override;
