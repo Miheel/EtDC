@@ -1,8 +1,8 @@
-#include "adventure.hpp"
 #include <iostream>
-#include "card/chapter.hpp"
-#include "card/bossCard.hpp"
-#include "card/extraCard.hpp"
+#include "adventure.hpp"
+#include "chapter.hpp"
+#include "bossCard.hpp"
+#include "extraCard.hpp"
 #include "randGen.hpp"
 #include "mainMenu.hpp"
 #include "endGame.hpp"
@@ -249,7 +249,7 @@ void Adventure::handleEvent(sf::RenderWindow & win, sf::Event & event)
 			}
 		}
 	}
-	if (event.type = sf::Event::KeyReleased)
+	if (event.type == sf::Event::KeyReleased)
 	{
 		if (event.key.code == sf::Keyboard::Escape)
 		{
